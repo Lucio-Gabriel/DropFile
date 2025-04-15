@@ -13,6 +13,8 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('dashboard/dropfile', \App\Livewire\Dashboard\Index::class)->name('dashboard.dropfile');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
