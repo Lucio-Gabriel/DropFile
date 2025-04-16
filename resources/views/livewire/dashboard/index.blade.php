@@ -10,7 +10,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-200">
-                            Produtos Encontrados
+                            Produtos Minerados
                         </p>
                         <p class="text-2xl font-semibold text-gray-200">
                             1,247
@@ -34,7 +34,7 @@
                     </div>
                     <div class="ml-4">
                         <p class="text-sm font-medium text-gray-200">
-                            Produtos Aprovados
+                            Prontos para Loja
                         </p>
                         <p class="text-2xl font-semibold text-gray-200">
                             582
@@ -55,7 +55,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-200">Em Processamento</p>
+                        <p class="text-sm font-medium text-gray-200">Em Análise</p>
                         <p class="text-2xl font-semibold text-gray-200">128</p>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-200">Erros</p>
+                        <p class="text-sm font-medium text-gray-200">Com Problemas</p>
                         <p class="text-2xl font-semibold text-gray-200">8</p>
                     </div>
                 </div>
