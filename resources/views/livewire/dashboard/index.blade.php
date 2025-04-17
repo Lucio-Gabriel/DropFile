@@ -141,7 +141,7 @@
                 <h3 class="text-lg font-medium text-gray-200">
                     Produtos Recentes
                 </h3>
-                <a href="#" class="text-sm font-medium text-yellow-600 hover:text-yellow-800 duration-300">
+                <a href="{{ route('products.index') }}" class="text-sm font-medium text-yellow-600 hover:text-yellow-800 duration-300" wire:navigate>
                     Ver Todos
                 </a>
             </div>
