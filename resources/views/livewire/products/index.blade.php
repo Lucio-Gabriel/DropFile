@@ -7,14 +7,11 @@
     />
 
     <div class="flex items-end justify-end mt-3">
-        <a
-            class="flex gap-1 bg-yellow-600 hover:bg-yellow-800 duration-300 px-3 py-2 font-normal shadow-2xl rounded-sm"
+       <x-btn.button-link-yellow
             href="#"
-
-        >
-            <x-svg.folder-plus class="w-6" />
-            Adicionar produto
-        </a>
+            label="Adicionar produtos"
+            icon="svg.folder-plus"
+       />
     </div>
 
     <div class="bg-[#242627] rounded-lg shadow mt-4">
