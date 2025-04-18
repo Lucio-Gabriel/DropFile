@@ -15,6 +15,8 @@ Route::view('dashboard', 'dashboard')
 
 Route::get('dashboard/dropfile', \App\Livewire\Dashboard\Index::class)->name('dashboard.dropfile');
 
+Route::get('list-products', \App\Livewire\Products\Index::class)->name('products.index');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

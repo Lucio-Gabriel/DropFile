@@ -11,10 +11,19 @@
             </a>
 
             <flux:navlist variant="outline">
-                <flux:navlist.item icon="home" :href="route('dashboard.dropfile')" :current="request()->routeIs('dashboard.dropfile')" wire:navigate>
-                    Dashboard
-                </flux:navlist.item>
+                <div>
+                    <flux:navlist.item icon="home" :href="route('dashboard.dropfile')" :current="request()->routeIs('dashboard.dropfile')" wire:navigate>
+                        Dashboard
+                    </flux:navlist.item>
+                </div>
+
+                <div class="mt-3">
+                    <flux:navlist.item icon="list-bullet" :href="route('products.index')" :current="request()->routeIs('products.index')" wire:navigate>
+                        Lista de produtos
+                    </flux:navlist.item>
+                </div>
             </flux:navlist>
+
 
             <flux:spacer />
 
