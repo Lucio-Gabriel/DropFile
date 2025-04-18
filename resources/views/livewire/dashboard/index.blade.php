@@ -1,5 +1,11 @@
 <div>
-    <main class="min-h-screen transition-all duration-300">
+    <x-breadcrumbs.breadcrumb title="Dashboard"
+        :items="[
+            ['label' => 'Dashboard', 'route' => route('dashboard.dropfile')],
+        ]"
+    />
+
+    <main class="min-h-screen transition-all duration-300 mt-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <div class="bg-[#242627] rounded-lg shadow p-4">
                 <div class="flex items-center">
