@@ -1,23 +1,12 @@
 <div>
-    <div>
-        <h1 class="text-2xl font-semibold">
-            Lista de produtos
-        </h1>
+    <x-breadcrumbs.breadcrumb title="Lista de produtos"
+        :items="[
+            ['label' => 'Dashboard', 'route' => route('dashboard.dropfile')],
+            ['label' => 'Lista de produtos', 'route' => route('products.index')]
+        ]"
+    />
 
-        <div class="flex gap-1.5 mt-2">
-            <x-svg.home class="w-4" />
-
-            <a
-                wire:navigate
-                class="text-xs font-normal"
-                href="{{ route('dashboard.dropfile') }}"
-            >
-                Dashboard
-            </a>
-        </div>
-    </div>
-
-    <div class="flex items-end justify-end">
+    <div class="flex items-end justify-end mt-3">
         <a
             class="flex gap-1 bg-yellow-600 hover:bg-yellow-800 duration-300 px-3 py-2 font-normal shadow-2xl rounded-sm"
             href="#"
