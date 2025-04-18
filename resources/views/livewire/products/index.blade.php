@@ -8,7 +8,7 @@
 
     <div class="flex items-end justify-end mt-3">
        <x-btn.button-link-yellow
-            href="#"
+            href="{{ route('products.create') }}"
             label="Adicionar produtos"
             icon="svg.folder-plus"
        />
