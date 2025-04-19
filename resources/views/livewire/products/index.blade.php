@@ -8,6 +8,7 @@
 
     <div class="flex items-end justify-end mt-3">
         <x-btn.button-link-yellow
+            wire:navigate
             href="{{ route('products.create') }}"
             icon="svg.folder-plus"
         >
