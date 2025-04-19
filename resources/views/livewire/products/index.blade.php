@@ -7,11 +7,13 @@
     />
 
     <div class="flex items-end justify-end mt-3">
-       <x-btn.button-link-yellow
-            href="#"
-            label="Adicionar produtos"
+        <x-btn.button-link-yellow
+            wire:navigate
+            href="{{ route('products.create') }}"
             icon="svg.folder-plus"
-       />
+        >
+            Adicionar produtos
+        </x-btn.button-link-yellow>
     </div>
 
     <div class="bg-[#242627] rounded-lg shadow mt-4">
