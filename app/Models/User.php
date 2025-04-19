@@ -63,7 +63,7 @@ class User extends Authenticatable
     {
         static::creating(function ($user) {
             $workspace = Workspace::create([
-                    'name' => $user->name,
+                'name' => $user->name,
             ]);
 
             $user->workspace_id = $workspace->id;
