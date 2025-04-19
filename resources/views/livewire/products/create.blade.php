@@ -160,13 +160,15 @@
                 </div>
 
                 <div class="flex justify-end space-x-4 pt-4">
-                    <button type="button" class="px-6 py-2 bg-gray-950 hover:bg-gray-900 duration-300 text-white font-medium rounded transition-colors">
+                    <x-btn.button-link-white
+                        href="{{ route('products.index') }}"
+                    >
                         Cancelar
-                    </button>
-                    <button type="submit" class="px-6 py-2 bg-yellow-600 hover:bg-yellow-800 duration-300 text-white font-medium rounded transition-colors flex items-center justify-center">
-                        <x-svg.check/>
+                    </x-btn.button-link-white>
+
+                    <x-btn.button-submit :icon="'svg.check'">
                         Salvar
-                    </button>
+                    </x-btn.button-submit>
                 </div>
             </form>
         </div>
