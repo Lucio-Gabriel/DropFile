@@ -9,7 +9,7 @@
 
     <div class="container mx-auto px-4 py-8">
         <div class="bg-[#232627] rounded-lg shadow-lg p-6">
-            <form class="space-y-6">
+            <form wire:submit.prevent="save" class="space-y-6">
                 <div class="flex flex-col md:flex-row gap-6">
                     <div class="w-full md:w-1/3">
                         <label class="block text-gray-400 font-medium mb-2">Foto do Produto</label>
@@ -31,11 +31,16 @@
                                 </x-inputs.label-text>
 
                                 <x-inputs.input
-                                    id="product-name"
+                                    id="name"
                                     name="name"
+                                    wire:model="name"
                                     type="text"
                                     placeholder="Ex: Apple AirPods Pro"
                                 />
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('name') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                             <div>
                                 <x-inputs.label-text>
@@ -45,9 +50,14 @@
                                 <x-inputs.input
                                     id="product-sku"
                                     name="name"
-                                    type="text"
+                                    wire:model="product_code"
+                                    type="number"
                                     placeholder="Ex: AP-PRO-001"
                                 />
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('product_code') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                         </div>
 
@@ -58,23 +68,33 @@
                                 </x-inputs.label-text>
 
                                 <x-inputs.input
-                                    id="product-price"
-                                    name="name"
+                                    id="price"
+                                    name="price"
                                     type="number"
+                                    wire:model="price_sale"
                                     placeholder="Ex: 189.90"
                                 />
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('price_sale') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                             <div>
                                 <x-inputs.label-text>
-                                    Preço de Custo (R$)*
+                                    Preço do produto (R$)*
                                 </x-inputs.label-text>
 
                                 <x-inputs.input
                                     id="product-cost"
                                     name="name"
                                     type="number"
+                                    wire:model="price_product"
                                     placeholder="Ex: 140.00"
                                 />
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('price_product') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                         </div>
 
@@ -85,23 +105,36 @@
                                 </x-inputs.label-text>
 
                                 <x-inputs.input
-                                    id="product-supplier"
-                                    name="name"
+                                    id="supplier"
+                                    name="supplier"
+                                    wire:model="supplier"
                                     type="text"
                                     placeholder="Ex: TechDrops Inc."
                                 />
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('supplier') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                             <div>
                                 <x-inputs.label-text>
                                     Status*
                                 </x-inputs.label-text>
 
-                                <select id="produto-status" class="w-full bg-gray-950 border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500">
-                                    <option value="" disabled selected>Selecione um status</option>
-                                    <option value="aprovado">Aprovado</option>
-                                    <option value="em_analise">Em análise</option>
-                                    <option value="recusado">Recusado</option>
+                                <select
+                                    class="w-full bg-gray-950 border border-gray-600 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                                    id="product_status"
+                                    wire:model.change="product_status"
+                                >
+                                    <option value="">Selecione um status...</option>
+                                    @foreach(App\Enums\ProductStatus::toSelection() as $status)
+                                        <option value="{{ $status->value }}">{{ $status->toLabel() }}</option>
+                                    @endforeach
                                 </select>
+
+                                <div class="text-red-400 text-sm mt-1.5">
+                                    @error('product_status') <span>{{ $message }}</span>@enderror
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,11 +153,16 @@
 
                             <x-inputs.input
                                 class="pl-10"
-                                id="product-video"
-                                name="name"
+                                id="product_video_link"
+                                name="product_video_link"
+                                wire:model="product_video_link"
                                 type="url"
                                 placeholder="TikTok, Facebook Ads, YouTube, etc."
                             />
+
+                            <div class="text-red-400 text-sm mt-1.5">
+                                @error('product_video_link') <span>{{ $message }}</span>@enderror
+                            </div>
                         </div>
                     </div>
                     <div>
@@ -139,11 +177,16 @@
 
                             <x-inputs.input
                                 class="pl-10"
-                                id="product-store"
-                                name="name"
+                                id="store_link"
+                                name="store_link"
+                                wire:model="store_link"
                                 type="url"
                                 placeholder="AliExpress, Shopee, Amazon, etc."
                             />
+
+                            <div class="text-red-400 text-sm mt-1.5">
+                                @error('store_link') <span>{{ $message }}</span>@enderror
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -154,9 +197,15 @@
                     </x-inputs.label-text>
 
                     <x-inputs.textarea
+                        id="description"
                         name="description"
+                        wire:model="description"
                         placeholder="Descrição detalhada do produto..."
                     />
+
+                    <div class="text-red-400 text-sm mt-1.5">
+                        @error('description') <span>{{ $message }}</span>@enderror
+                    </div>
                 </div>
 
                 <div class="flex justify-end space-x-4 pt-4">
@@ -166,7 +215,7 @@
                         Cancelar
                     </x-btn.button-link-white>
 
-                    <x-btn.button-submit :icon="'svg.check'">
+                    <x-btn.button-submit type="submit" :icon="'svg.check'">
                         Salvar
                     </x-btn.button-submit>
                 </div>
