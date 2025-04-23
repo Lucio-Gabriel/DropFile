@@ -12,7 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('photo_product')->nullable();
             $table->string('name');
-            $table->integer('price');
+            $table->integer('product_code');
+            $table->integer('price_sale');
+            $table->integer('price_product');
             $table->string('supplier')->nullable();
             $table->string('description');
             $table->string('product_status');

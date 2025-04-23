@@ -10,7 +10,6 @@ enum ProductStatus: string
 
     case Rejected = 'rejected';
 
-
     public static function toRule(): string
     {
         $values = array_column(ProductStatus::cases(), 'value');
