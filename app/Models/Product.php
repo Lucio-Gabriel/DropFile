@@ -15,7 +15,7 @@ class Product extends Model
         'price',
         'supplier',
         'description',
-        'creation_status',
+        'product_status',
         'product_video_link',
         'store_link',
     ];
