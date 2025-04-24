@@ -114,3 +114,28 @@ it('should be able validate camp supplier', function () {
        ->call('save')
        ->assertHasErrors(['supplier' => 'max']);
 });
+
+it('should be able validate camp description', function () {
+   $user = User::factory()->create();
+
+   actingAs($user);
+
+   Livewire::test(Create::class)
+       ->set('description', 'aa')
+       ->call('save')
+       ->assertHasErrors(['description' => 'min'])
+       ->set('description', str_repeat('a', 256))
+       ->call('save')
+       ->assertHasErrors(['description' => 'max']);
+});
+
+it('should be able validate camp product status', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('product_status', null)
+        ->call('save')
+        ->assertHasErrors(['product_status' => 'required']);
+});
