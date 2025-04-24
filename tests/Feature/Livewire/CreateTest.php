@@ -139,3 +139,14 @@ it('should be able validate camp product status', function () {
         ->call('save')
         ->assertHasErrors(['product_status' => 'required']);
 });
+
+it('should be able validate camp product video link', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('product_video_link', str_repeat('a', 256))
+        ->call('save')
+        ->assertHasErrors(['product_video_link' => 'max']);
+});
