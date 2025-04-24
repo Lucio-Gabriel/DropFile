@@ -47,3 +47,20 @@ it('should be able validate camp photo', function () {
         ->call('save')
         ->assertHasErrors(['photo_product' => 'image']);
 });
+
+it('should be able validate camp name', function () {
+   $user = User::factory()->create();
+
+   actingAs($user);
+
+   Livewire::test(Create::class)
+       ->set('name', '')
+       ->call('save')
+       ->assertHasErrors(['name' => 'required'])
+       ->set('name', 'aa')
+       ->call('save')
+       ->assertHasErrors(['name' => 'min'])
+       ->set('name', str_repeat('a', 256))
+       ->call('save')
+       ->assertHasErrors(['name' => 'max']);
+});
