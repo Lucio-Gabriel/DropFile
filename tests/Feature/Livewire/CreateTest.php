@@ -29,3 +29,21 @@ it('should be able a create product', function () {
        ->assertRedirect(route('products.index'))
        ->assertHasNoErrors();
 });
+
+it('should be able validate camp photo', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    $photo = UploadedFile::fake()->image('photo.jpg')->size(2000);
+
+    $video = UploadedFile::fake()->image('video.mp4');
+
+    Livewire::test(Create::class)
+        ->set('photo_product', $photo)
+        ->call('save')
+        ->assertHasErrors(['photo_product' => 'max'])
+        ->set('photo_product', $video)
+        ->call('save')
+        ->assertHasErrors(['photo_product' => 'image']);
+});
