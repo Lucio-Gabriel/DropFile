@@ -13,15 +13,42 @@
                 <div class="flex flex-col md:flex-row gap-6">
                     <div class="w-full md:w-1/3">
                         <label class="block text-gray-400 font-medium mb-2">Foto do Produto</label>
-                        <div class="border-2 border-dashed border-gray-600 rounded-lg h-64 flex items-center justify-center cursor-pointer hover:border-yellow-500 transition-colors">
-                            <div class="text-center p-4">
-                                <div class="text-gray-500 mb-2"><i class="fas fa-cloud-upload-alt text-4xl"></i></div>
-                                <p class="text-sm text-gray-400">Arraste uma imagem ou clique para fazer upload</p>
-                                <p class="text-xs text-gray-500 mt-2">PNG, JPG ou GIF (máx. 2MB)</p>
-                            </div>
-                            <input type="file" class="hidden" accept="image/*">
+                        <div class="relative border-2 border-dashed border-gray-600 rounded-lg h-64 hover:border-yellow-500 transition-colors overflow-hidden">
+                            @if ($photo_product)
+                                <div class="absolute inset-0 z-10">
+                                    <img src="{{ $photo_product->temporaryUrl() }}" alt="Prévia do produto" class="w-full h-full object-cover">
+                                    <button
+                                        type="button"
+                                        wire:click="resetImage"
+                                        class="absolute top-2 right-2 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 transition-colors"
+                                        title="Remover imagem"
+                                    >
+                                        <x-svg.x-circle class="w-5 h-5"/>
+                                    </button>
+                                </div>
+                            @else
+                                <label for="photo_product" class="absolute inset-0 cursor-pointer flex items-center justify-center">
+                                    <div class="text-center p-4 z-10">
+                                        <div class="text-gray-500 mb-2"><i class="fas fa-cloud-upload-alt text-4xl"></i></div>
+                                        <p class="text-sm text-gray-400">Arraste uma imagem ou clique para fazer upload</p>
+                                        <p class="text-xs text-gray-500 mt-2">PNG, JPG ou GIF (máx. 2MB)</p>
+                                    </div>
+                                </label>
+                            @endif
+                            <input
+                                type="file"
+                                wire:model.live="photo_product"
+                                accept="image/*"
+                                id="photo_product"
+                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20 {{ $photo_product ? 'hidden' : '' }}"
+                            />
+                        </div>
+                        <div class="text-red-400 text-sm mt-1.5">
+                            @error('photo_product') <span>{{ $message }}</span>@enderror
                         </div>
                     </div>
+
+
 
                     <div class="w-full md:w-2/3 space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

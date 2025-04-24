@@ -7,10 +7,14 @@ use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Create extends Component
 {
-    public string $photo_product = '';
+    use WithFileUploads;
+
+    #[Validate]
+    public $photo_product;
 
     #[Validate]
     public string $name = '';
@@ -42,6 +46,7 @@ class Create extends Component
     protected function rules(): array
     {
         return [
+            'photo_product' => 'nullable|image|max:1024',
             'name' => 'required|min:3|max:255',
             'product_code' => 'required|min:3|max:255',
             'price_sale' => 'required|numeric|min:0',
@@ -93,11 +98,19 @@ class Create extends Component
         ];
     }
 
+    public function resetImage(): void
+    {
+        $this->photo_product = null;
+    }
+
     public function save()
     {
         $this->validate();
 
+        $filePath = $this->photo_product ? $this->photo_product->store('products', 'public') : null;
+
         Product::create([
+            'photo_product' => $filePath,
             'name' => $this->name,
             'product_code' => $this->product_code,
             'price_sale' => $this->price_sale,
