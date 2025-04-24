@@ -78,3 +78,25 @@ it('should be able validate camp product code', function () {
         ->call('save')
         ->assertHasErrors(['product_code' => 'min']);
 });
+
+it('should be able validate camp price sale', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('price_sale', '')
+        ->call('save')
+        ->assertHasErrors(['price_sale' => 'required']);
+});
+
+it('should be able validate camp price product', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('price_product', '')
+        ->call('save')
+        ->assertHasErrors(['price_product' => 'required']);
+});
