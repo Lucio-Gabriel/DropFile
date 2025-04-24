@@ -16,6 +16,4 @@
             @endif
         });
     </script>
-
-
 </x-layouts.app.sidebar>

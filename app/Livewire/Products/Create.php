@@ -127,7 +127,10 @@ class Create extends Component
             'message' => 'Produto criado com sucesso.',
         ]);
 
+        sleep(1);
         $this->redirect(route('products.index'));
+
+        $this->dispatch('delay-redirect');
     }
 
     public function render(): View

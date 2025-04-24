@@ -242,11 +242,19 @@
                         Cancelar
                     </x-btn.button-link-white>
 
-                    <x-btn.button-submit type="submit" :icon="'svg.check'">
+                    <x-btn.button-submit :icon="'svg.check'" loadingTarget="save">
                         Salvar
                     </x-btn.button-submit>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        Livewire.on('delay-redirect', ()=> {
+            setTimeout(() => {
+                window.location.href = "{{ route('products.index') }}"
+            }, 2500)
+        });
+    </script>
 </div>
