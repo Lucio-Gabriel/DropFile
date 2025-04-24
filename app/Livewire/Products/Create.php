@@ -62,6 +62,9 @@ class Create extends Component
     protected function messages(): array
     {
         return [
+            'photo_product.image' => 'A imagem do produto deve ser um arquivo do tipo imagem.',
+            'photo_product.max' => 'A imagem do produto não pode ter mais que 1MB.',
+
             'name.required' => 'O nome do produto é obrigatório.',
             'name.min' => 'O nome do produto deve ter no mínimo 3 caracteres.',
             'name.max' => 'O nome do produto deve ter no máximo 255 caracteres.',
