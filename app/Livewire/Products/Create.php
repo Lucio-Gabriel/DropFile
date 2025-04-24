@@ -103,7 +103,7 @@ class Create extends Component
         $this->photo_product = null;
     }
 
-    public function save()
+    public function save(): void
     {
         $this->validate();
 
@@ -120,6 +120,11 @@ class Create extends Component
             'product_status' => $this->product_status,
             'product_video_link' => $this->product_video_link,
             'store_link' => $this->store_link,
+        ]);
+
+        session()->flash('toastr', [
+            'type' => 'success',
+            'message' => 'Produto criado com sucesso.',
         ]);
 
         $this->redirect(route('products.index'));
