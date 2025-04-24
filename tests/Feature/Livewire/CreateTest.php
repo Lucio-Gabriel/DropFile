@@ -64,3 +64,17 @@ it('should be able validate camp name', function () {
        ->call('save')
        ->assertHasErrors(['name' => 'max']);
 });
+
+it('should be able validate camp product code', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('product_code', '')
+        ->call('save')
+        ->assertHasErrors(['product_code' => 'required'])
+        ->set('product_code', 11)
+        ->call('save')
+        ->assertHasErrors(['product_code' => 'min']);
+});
