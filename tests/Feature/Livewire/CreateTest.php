@@ -100,3 +100,17 @@ it('should be able validate camp price product', function () {
         ->call('save')
         ->assertHasErrors(['price_product' => 'required']);
 });
+
+it('should be able validate camp supplier', function () {
+   $user = User::factory()->create();
+
+   actingAs($user);
+
+   Livewire::test(Create::class)
+       ->set('supplier', 'aa')
+       ->call('save')
+       ->assertHasErrors(['supplier' => 'min'])
+       ->set('supplier', str_repeat('a', 256))
+       ->call('save')
+       ->assertHasErrors(['supplier' => 'max']);
+});
