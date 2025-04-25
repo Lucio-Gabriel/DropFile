@@ -150,3 +150,15 @@ it('should be able validate camp product video link', function () {
         ->call('save')
         ->assertHasErrors(['product_video_link' => 'max']);
 });
+
+it('should be able validate camp store link', function () {
+    $user = User::factory()->create();
+
+    actingAs($user);
+
+    Livewire::test(Create::class)
+        ->set('product_video_link', str_repeat('a', 256))
+        ->call('save')
+        ->assertHasErrors(['product_video_link' => 'max']);
+});
+
