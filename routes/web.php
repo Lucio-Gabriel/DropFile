@@ -15,8 +15,8 @@ Route::view('dashboard', 'dashboard')
 
 Route::get('dashboard/dropfile', \App\Livewire\Dashboard\Index::class)->name('dashboard.dropfile');
 
-Route::get('products-list', \App\Livewire\Products\Index::class)->name('products.index');
-Route::get('products/create', \App\Livewire\Products\Create::class)->name('products.create');
+Route::get('products-list', \App\Livewire\Products\Index::class)->middleware(['auth', 'verified'])->name('products.index');
+Route::get('products/create', \App\Livewire\Products\Create::class)->middleware(['auth', 'verified'])->name('products.create');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
