@@ -4,30 +4,31 @@ use App\Livewire\Products\Create;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Livewire\Livewire;
+
 use function Pest\Laravel\actingAs;
 
 it('should be able a create product', function () {
-   $user = User::factory()->create();
+    $user = User::factory()->create();
 
-   actingAs($user);
+    actingAs($user);
 
-   $photo = UploadedFile::fake()->image('photo.jpg');
+    $photo = UploadedFile::fake()->image('photo.jpg');
 
-   Livewire::test(Create::class)
-       ->set('photo_product', $photo)
-       ->set('name', 'Product Name')
-       ->set('product_code', 123)
-       ->set('price_sale', 100)
-       ->set('price_product', 200)
-       ->set('supplier', 'shopee')
-       ->set('description', 'Description')
-       ->set('product_status', \App\Enums\ProductStatus::Approved)
-       ->set('product_video_link', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-       ->set('store_link', 'https://store.store/products')
-       ->call('save')
-       ->assertSessionHas('toastr', ['type' => 'success', 'message' => 'Produto criado com sucesso.'])
-       ->assertRedirect(route('products.index'))
-       ->assertHasNoErrors();
+    Livewire::test(Create::class)
+        ->set('photo_product', $photo)
+        ->set('name', 'Product Name')
+        ->set('product_code', 123)
+        ->set('price_sale', 100)
+        ->set('price_product', 200)
+        ->set('supplier', 'shopee')
+        ->set('description', 'Description')
+        ->set('product_status', \App\Enums\ProductStatus::Approved)
+        ->set('product_video_link', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+        ->set('store_link', 'https://store.store/products')
+        ->call('save')
+        ->assertSessionHas('toastr', ['type' => 'success', 'message' => 'Produto criado com sucesso.'])
+        ->assertRedirect(route('products.index'))
+        ->assertHasNoErrors();
 });
 
 it('should be able validate camp photo', function () {
@@ -49,20 +50,20 @@ it('should be able validate camp photo', function () {
 });
 
 it('should be able validate camp name', function () {
-   $user = User::factory()->create();
+    $user = User::factory()->create();
 
-   actingAs($user);
+    actingAs($user);
 
-   Livewire::test(Create::class)
-       ->set('name', '')
-       ->call('save')
-       ->assertHasErrors(['name' => 'required'])
-       ->set('name', 'aa')
-       ->call('save')
-       ->assertHasErrors(['name' => 'min'])
-       ->set('name', str_repeat('a', 256))
-       ->call('save')
-       ->assertHasErrors(['name' => 'max']);
+    Livewire::test(Create::class)
+        ->set('name', '')
+        ->call('save')
+        ->assertHasErrors(['name' => 'required'])
+        ->set('name', 'aa')
+        ->call('save')
+        ->assertHasErrors(['name' => 'min'])
+        ->set('name', str_repeat('a', 256))
+        ->call('save')
+        ->assertHasErrors(['name' => 'max']);
 });
 
 it('should be able validate camp product code', function () {
@@ -102,31 +103,31 @@ it('should be able validate camp price product', function () {
 });
 
 it('should be able validate camp supplier', function () {
-   $user = User::factory()->create();
+    $user = User::factory()->create();
 
-   actingAs($user);
+    actingAs($user);
 
-   Livewire::test(Create::class)
-       ->set('supplier', 'aa')
-       ->call('save')
-       ->assertHasErrors(['supplier' => 'min'])
-       ->set('supplier', str_repeat('a', 256))
-       ->call('save')
-       ->assertHasErrors(['supplier' => 'max']);
+    Livewire::test(Create::class)
+        ->set('supplier', 'aa')
+        ->call('save')
+        ->assertHasErrors(['supplier' => 'min'])
+        ->set('supplier', str_repeat('a', 256))
+        ->call('save')
+        ->assertHasErrors(['supplier' => 'max']);
 });
 
 it('should be able validate camp description', function () {
-   $user = User::factory()->create();
+    $user = User::factory()->create();
 
-   actingAs($user);
+    actingAs($user);
 
-   Livewire::test(Create::class)
-       ->set('description', 'aa')
-       ->call('save')
-       ->assertHasErrors(['description' => 'min'])
-       ->set('description', str_repeat('a', 256))
-       ->call('save')
-       ->assertHasErrors(['description' => 'max']);
+    Livewire::test(Create::class)
+        ->set('description', 'aa')
+        ->call('save')
+        ->assertHasErrors(['description' => 'min'])
+        ->set('description', str_repeat('a', 256))
+        ->call('save')
+        ->assertHasErrors(['description' => 'max']);
 });
 
 it('should be able validate camp product status', function () {
@@ -161,4 +162,3 @@ it('should be able validate camp store link', function () {
         ->call('save')
         ->assertHasErrors(['product_video_link' => 'max']);
 });
-
