@@ -83,9 +83,9 @@
                             <a href="#" class="text-yellow-600 hover:text-yellow-800 duration-300 mr-3">
                                 <x-svg.pencil-square class="w-5"/>
                             </a>
-                            <a href="#" class="text-yellow-600 hover:text-yellow-800 duration-300">
+                            <button wire:click="delete({{ $product->id }})" class="text-yellow-600 hover:text-yellow-800 duration-300">
                                 <x-svg.trash class="w-5" />
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 @endforeach

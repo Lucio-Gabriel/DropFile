@@ -16,6 +16,11 @@ class Index extends Component
         return Product::get();
     }
 
+    public function delete(int $productId): void
+    {
+        Product::findOrFail($productId)->delete();
+    }
+
     public function render(): View
     {
         return view('livewire.products.index');
